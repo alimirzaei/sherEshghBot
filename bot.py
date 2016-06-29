@@ -327,7 +327,7 @@ from random import randint
 def sendSher():
     global cur    
     while(1):
-        time.sleep(600)
+        time.sleep(3600*24*2)
         #allPics = glob.glob('/home/toranado/Pictures/sher_eshgh/*.*')
         #selected = randint(0,len(allPics)-1)
         #pic = allPics[selected]
@@ -336,7 +336,7 @@ def sendSher():
         cur.close()
         cur = db.cursor()
         
-        signiture = '\n\n به شعر عشق بپیوندید و خودتان یکی از ادمین های کانال باشید \n @sher_eshgh'
+        signiture = '\n\n به شعر عشق بپیوندید و یکی از ادمین های کانال باشید \n @sher_eshgh'
         if(len(result)!=0):
             pop = "\n محبوبیت این شعر %d درصد است "%(int(result[0][4]*100) )
             cur.execute("insert into SentShers(sherID,time) Values ('%d','%s')"%(result[0][0],str(datetime.now())))
