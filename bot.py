@@ -174,18 +174,18 @@ def vote(bot, update):
     if(len(result)==1):
         votedSherID = result[0][0]
         poem = result[0][1] 
-        beyts = poem.split('\n')
-        for m in beyts:
-            if(len(m)<3):
-                beyts.remove(m)
-        splitted = poem.split('#')
-        Poems = beyts[0:2]
-        Poet = splitted[-1]
-        out = testPic.getPicture(Poems,Poet)
-        out.save('temp.jpg')
-        myBot.sendPhoto(update.message.chat_id,open('temp.jpg'),'@sher_eshgh')
-        if(len(beyts)>3):
-            bot.sendMessage(update.message.chat_id,result[0][1]);
+        #beyts = poem.split('\n')
+        #for m in beyts:
+        #    if(len(m)<3):
+        #        beyts.remove(m)
+        #splitted = poem.split('#')
+        #Poems = beyts[0:2]
+        #Poet = splitted[-1]
+        #out = testPic.getPicture(Poems,Poet)
+        #out.save('temp.jpg')
+        #myBot.sendPhoto(update.message.chat_id,open('temp.jpg'),'@sher_eshgh')
+        #if(len(beyts)>3):
+        bot.sendMessage(update.message.chat_id,poem);
         msg= "نظرتون چیه؟"
         params = urllib.urlencode({'chat_id': str(update.message.chat_id),
         'text': msg.encode('utf-8'),
@@ -328,9 +328,9 @@ def sendSher():
     global cur    
     while(1):
         time.sleep(600)
-        allPics = glob.glob('/home/toranado/Pictures/sher_eshgh/*.*')
-        selected = randint(0,len(allPics)-1)
-        pic = allPics[selected]
+        #allPics = glob.glob('/home/toranado/Pictures/sher_eshgh/*.*')
+        #selected = randint(0,len(allPics)-1)
+        #pic = allPics[selected]
         cur.execute('CALL GetPoemForReading(0)')
         result = cur.fetchall()
         cur.close()
@@ -343,24 +343,24 @@ def sendSher():
             db.commit()
             
             poem = result[0][1] 
-            beyts = poem.split('\n')
-            for m in beyts:
-                if(len(m)<3):
-                    beyts.remove(m)
-            splitted = poem.split('#')
-            Poems = beyts[0:2]
-            Poet = splitted[-1]
-            print Poet
+            #beyts = poem.split('\n')
+            #for m in beyts:
+            #    if(len(m)<3):
+            #        beyts.remove(m)
+            #splitted = poem.split('#')
+            #Poems = beyts[0:2]
+            #Poet = splitted[-1]
+            #print Poet
             #import pdb
             #pdb.set_trace()
-            Poet = Poet.replace('ـ',' ')
+            #Poet = Poet.replace('ـ',' ')
             
             #Poet = Poet.replace('ـ',' ')
-            out = testPic.getPicture(Poems,Poet)
-            out.save('temp.jpg')
-            myBot.sendPhoto(104729667,open('temp.jpg'),'@sher_eshgh')
-            if(len(beyts)>3):
-                myBot.sendMessage(104729667,result[0][1]+pop+signiture)
+            #out = testPic.getPicture(Poems,Poet)
+            #out.save('temp.jpg')
+            #myBot.sendPhoto(104729667,open('temp.jpg'),'@sher_eshgh')
+            #if(len(beyts)>3):
+            myBot.sendMessage(104729667,poem+pop+signiture)
             
             
 def main():
