@@ -217,7 +217,9 @@ def saveSher(bot, update):
     dp.removeTelegramMessageHandler(saveSher)
     text = update.message.text
     splitted = text.split('#')
-    if(len(splitted) == 2):
+    if(text[0] == '/'):
+        a = 5            
+    elif(len(splitted) == 2):
         q = "INSERT INTO Shers (sher, sender,poet,time) VALUES ('%s','%ld','%s','%s')" % \
         (text, update.message.from_user.id, splitted[-1].encode('utf8'),str(datetime.now()))    
         try:
@@ -327,7 +329,6 @@ from random import randint
 def sendSher():
     global cur    
     while(1):
-        time.sleep(3600*24*2)
         #allPics = glob.glob('/home/toranado/Pictures/sher_eshgh/*.*')
         #selected = randint(0,len(allPics)-1)
         #pic = allPics[selected]
@@ -361,6 +362,8 @@ def sendSher():
             #myBot.sendPhoto(104729667,open('temp.jpg'),'@sher_eshgh')
             #if(len(beyts)>3):
             myBot.sendMessage(104729667,poem+pop+signiture)
+            time.sleep(3600*24*2)
+
             
             
 def main():
